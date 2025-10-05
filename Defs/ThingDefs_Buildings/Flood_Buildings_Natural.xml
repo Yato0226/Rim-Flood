@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef Name="BuildingFloodBase" Abstract="True">
+    <category>Building</category>
+    <selectable>true</selectable>
+    <drawerType>MapMeshOnly</drawerType>
+    <filthLeaving>FilthFlood</filthLeaving>
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <building>
+      <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+    </building>
+	<comps>
+		<li Class="BuildingDefaultFaction.CompProperties_BuildingDefaultFaction">
+		<compClass>BuildingDefaultFaction.CompBuildingDefaultFaction</compClass>
+		<faction>Flood</faction>
+		</li>
+	</comps>
+  </ThingDef>
+  
+ <ThingDef Abstract="True" Name="BaseFloodTurret" ParentName="BaseWeapon">
+    <destroyOnDrop>True</destroyOnDrop>
+    <menuHidden>true</menuHidden>
+    <tradeability>None</tradeability>
+    <useHitPoints>false</useHitPoints>
+    <weaponTags>
+      <li>TurretGun</li>
+    </weaponTags>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+  </ThingDef>
+  
+  <ThingDef ParentName="BuildingBase">
+    <defName>Flood_Spitter</defName>
+    <label>Spitter turret</label>
+    <description>A spitting tentacle</description>
+    <thingClass>Building_TurretGun</thingClass>
+	<drawerType>MapMeshAndRealTime</drawerType>
+    <graphicData>
+      <texPath>Pawn/Flood/Body/spitter_stalk</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(2,2)</drawSize>
+	  <drawOffset>(0,0,-0.11)</drawOffset>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+      <shadowData>
+        <volume>(0.27,0.25,0.27)</volume>
+        <offset>(0,0,0)</offset>
+      </shadowData>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <stealable>false</stealable>
+    <rotatable>false</rotatable>
+    <statBases>
+      <MaxHitPoints>100</MaxHitPoints>
+      <Flammability>2.0</Flammability>
+      <WorkToBuild>1800</WorkToBuild>
+      <Mass>8</Mass>
+      <Beauty>-20</Beauty>
+      <ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+    </statBases>
+    <tickerType>Normal</tickerType>
+	<size>1,1</size>
+	<comps>
+	<li Class="BuildingDefaultFaction.CompProperties_BuildingDefaultFaction">
+			<compClass>BuildingDefaultFaction.CompBuildingDefaultFaction</compClass>
+            <faction>Flood</faction>
+    </li>
+	</comps>
+    <passability>Impassable</passability>
+	<coversFloor>true</coversFloor>
+    <pathCost>50</pathCost>
+	<receivesSignals>true</receivesSignals>
+    <fillPercent>0.4</fillPercent>
+    <hasTooltip>true</hasTooltip>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <building>
+      <combatPower>45</combatPower>   <!-- same as a scavenger -->
+      <ai_combatDangerous>true</ai_combatDangerous>
+      <turretGunDef>Spitterbulb</turretGunDef>
+      <turretBurstCooldownTime>4.8</turretBurstCooldownTime>
+    </building>
+	<placeWorkers>
+      <li>PlaceWorker_TurretTop</li>
+      <li>PlaceWorker_ShowTurretRadius</li>
+    </placeWorkers>
+  
+  </ThingDef>
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Sporefire</defName>
+    <label>mini-turret bullet</label>
+    <graphicData>
+      <texPath>Pawn/Flood/Body/spore_fire</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>11</damageAmountBase>
+      <speed>40</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>Spitterbulb</defName>
+    <label>Spitter bulb</label>
+    <description>top of a spitter turret</description>
+    <graphicData>
+      <texPath>Pawn/Flood/Body/Spitter_bulb</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <drawSize>(2,2)</drawSize>
+    </graphicData>
+    <statBases>
+      <AccuracyTouch>0.70</AccuracyTouch>
+      <AccuracyShort>0.64</AccuracyShort>
+      <AccuracyMedium>0.41</AccuracyMedium>
+      <AccuracyLong>0.22</AccuracyLong>
+      <RangedWeapon_Cooldown>4.8</RangedWeapon_Cooldown>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>5</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <defaultProjectile>Sporefire</defaultProjectile>
+        <warmupTime>0</warmupTime>
+        <range>28.9</range>
+        <ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+        <burstShotCount>2</burstShotCount>
+        <soundCast>BulletImpact_Flesh</soundCast>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+	<comps>
+	<li Class="BuildingDefaultFaction.CompProperties_BuildingDefaultFaction">
+			<compClass>BuildingDefaultFaction.CompBuildingDefaultFaction</compClass>
+            <faction>Flood</faction>
+    </li>
+	</comps>
+  </ThingDef>
+  
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rangedform</defName>
+    <label>Ranged form</label>
+    <description>A Flood stalker deployed in ranged form</description>
+    <thingClass>Building_TurretGun</thingClass>
+	<drawerType>MapMeshAndRealTime</drawerType>
+    <graphicData>
+      <texPath>Pawn/Flood/Body/ranged_form_bottom</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(2,2)</drawSize>
+	  <drawOffset>(0,0,-0.11)</drawOffset>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+      <shadowData>
+        <volume>(0.27,0.25,0.27)</volume>
+        <offset>(0,0,0)</offset>
+      </shadowData>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <stealable>false</stealable>
+    <rotatable>false</rotatable>
+    <statBases>
+      <MaxHitPoints>30</MaxHitPoints>
+      <Flammability>2.0</Flammability>
+      <WorkToBuild>1800</WorkToBuild>
+      <Mass>8</Mass>
+      <Beauty>-20</Beauty>
+      <ShootingAccuracyTurret>0.96</ShootingAccuracyTurret>
+    </statBases>
+    <tickerType>Normal</tickerType>
+	<size>1,1</size>
+	<comps>
+		<li Class="BuildingDefaultFaction.CompProperties_BuildingDefaultFaction">
+			<compClass>BuildingDefaultFaction.CompBuildingDefaultFaction</compClass>
+            <faction>Flood</faction>
+        </li>
+		<li Class="CompProperties_Maintainable">
+        <ticksHealthy>500</ticksHealthy>
+        <ticksNeedsMaintenance>500</ticksNeedsMaintenance>
+        <damagePerTickRare>1</damagePerTickRare>
+      </li>
+	</comps>
+    <passability>Impassable</passability>
+	<coversFloor>true</coversFloor>
+	<killedLeavings>
+      <FloodeggfertilizedF>1</FloodeggfertilizedF>
+    </killedLeavings>
+    <pathCost>50</pathCost>
+	<receivesSignals>true</receivesSignals>
+    <fillPercent>0.4</fillPercent>
+    <hasTooltip>true</hasTooltip>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <building>
+      <combatPower>45</combatPower>   <!-- same as a scavenger -->
+      <ai_combatDangerous>true</ai_combatDangerous>
+      <turretGunDef>Rangedtop</turretGunDef>
+      <turretBurstCooldownTime>4.8</turretBurstCooldownTime>
+    </building>
+	<placeWorkers>
+      <li>PlaceWorker_TurretTop</li>
+      <li>PlaceWorker_ShowTurretRadius</li>
+    </placeWorkers>
+  
+  </ThingDef>
+
+  <ThingDef ParentName="BaseBullet">
+    <defName>Rangedfire</defName>
+    <label>mini-turret bullet</label>
+    <graphicData>
+      <texPath>Pawn/Flood/Body/spore_fire</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>8</damageAmountBase>
+      <speed>55</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseWeaponTurret">
+    <defName>Rangedtop</defName>
+    <label>Ranged top</label>
+    <description>top of a Ranged form</description>
+    <graphicData>
+      <texPath>Pawn/Flood/Body/ranged_form_top</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+	  <drawSize>(2,2)</drawSize>
+    </graphicData>
+    <statBases>
+      <AccuracyTouch>0.70</AccuracyTouch>
+      <AccuracyShort>0.64</AccuracyShort>
+      <AccuracyMedium>0.41</AccuracyMedium>
+      <AccuracyLong>0.22</AccuracyLong>
+      <RangedWeapon_Cooldown>4.8</RangedWeapon_Cooldown>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>5</Mass>
+      <Flammability>0</Flammability>
+    </statBases>
+    <verbs>
+      <li>
+        <verbClass>Verb_Shoot</verbClass>
+        <defaultProjectile>Sporefire</defaultProjectile>
+        <warmupTime>0</warmupTime>
+        <range>32</range>
+        <ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+        <burstShotCount>6</burstShotCount>
+        <soundCast>BulletImpact_Flesh</soundCast>
+        <muzzleFlashScale>9</muzzleFlashScale>
+      </li>
+    </verbs>
+  </ThingDef>
+</Defs>

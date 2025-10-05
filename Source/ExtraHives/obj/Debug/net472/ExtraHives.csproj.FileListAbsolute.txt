@@ -1,0 +1,11 @@
+C:\Users\louize\source\repos\TempDecompiledAssembly\RIMFLOOD\ExtraHives\obj\Debug\net472\ExtraHives.csproj.AssemblyReference.cache
+C:\Users\louize\source\repos\TempDecompiledAssembly\RIMFLOOD\ExtraHives\obj\Debug\net472\ExtraHives.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\louize\source\repos\TempDecompiledAssembly\RIMFLOOD\ExtraHives\obj\Debug\net472\ExtraHives.csproj.CoreCompileInputs.cache
+D:\Quick Access\Games\RimWorld\Mods\Rim Flood\Source\ExtraHives\obj\Debug\net472\ExtraHives.csproj.AssemblyReference.cache
+D:\Quick Access\Games\RimWorld\Mods\Rim Flood\Source\ExtraHives\obj\Debug\net472\ExtraHives.GeneratedMSBuildEditorConfig.editorconfig
+D:\Quick Access\Games\RimWorld\Mods\Rim Flood\Source\ExtraHives\obj\Debug\net472\ExtraHives.csproj.CoreCompileInputs.cache
+D:\Quick Access\Games\RimWorld\Mods\Rim Flood\Assemblies\Debug\net472\ExtraHives.dll
+D:\Quick Access\Games\RimWorld\Mods\Rim Flood\Assemblies\Debug\net472\ExtraHives.pdb
+D:\Quick Access\Games\RimWorld\Mods\Rim Flood\Source\ExtraHives\obj\Debug\net472\ExtraHives.csproj.Up2Date
+D:\Quick Access\Games\RimWorld\Mods\Rim Flood\Source\ExtraHives\obj\Debug\net472\ExtraHives.dll
+D:\Quick Access\Games\RimWorld\Mods\Rim Flood\Source\ExtraHives\obj\Debug\net472\ExtraHives.pdb

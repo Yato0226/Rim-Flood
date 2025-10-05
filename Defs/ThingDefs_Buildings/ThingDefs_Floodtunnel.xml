@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <ThingDef ParentName="BuildingBase">
+        <defName>Floodtunnel</defName>
+        <label>Flood Tunnel</label>
+        <description>A tunnel created by the Flood.</description>
+        <category>Building</category>
+        <graphicData>
+            <texPath>Things/Building/Linked/DeepDrill</texPath> <!-- Placeholder graphic -->
+            <graphicClass>Graphic_Single</graphicClass>
+            <drawSize>(1,1)</drawSize>
+        </graphicData>
+        <altitudeLayer>Building</altitudeLayer>
+        <passability>Impassable</passability>
+        <blockWind>true</blockWind>
+        <coversFloor>true</coversFloor>
+        <fillPercent>1</fillPercent>
+        <statBases>
+            <MaxHitPoints>100</MaxHitPoints>
+            <WorkToBuild>100</WorkToBuild>
+            <Flammability>0</Flammability>
+        </statBases>
+        <selectable>true</selectable>
+        <neverMultiSelect>true</neverMultiSelect>
+        <rotatable>false</rotatable>
+        <thingCategories>
+            <li>BuildingsMisc</li>
+        </thingCategories>
+    </ThingDef>
+</Defs>
