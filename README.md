@@ -1,4 +1,4 @@
-#This mod is updated to 1.6
+# This mod is updated to 1.6
 
 # Rim Flood
 
