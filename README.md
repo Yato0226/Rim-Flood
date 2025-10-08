@@ -1,8 +1,10 @@
-This mod is updated to 1.6
+#This mod is updated to 1.6
 
 # Rim Flood
 
 A RimWorld mod by Fenndragon.
+
+Updated by me!
 
 ## Description
 Adds The Flood to possible raiding factions.
