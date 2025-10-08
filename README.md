@@ -28,6 +28,3 @@ This mod requires the following:
 
 ## Credits
 *   **Author:** Fenndragon
-
-## License
-[Consider adding a license here, e.g., MIT, Apache 2.0, etc.]
