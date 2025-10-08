@@ -35,5 +35,9 @@ This mod requires the following:
 2.  Ensure all dependencies are installed and enabled.
 3.  Activate "Rim Flood" in your RimWorld mod list.
 
+## Original Mod
+*   **Link:** https://steamcommunity.com/sharedfiles/filedetails/?id=2348148745
+*   **Author:** Fenndragon
+
 ## Credits
 *   **Author:** Fenndragon
