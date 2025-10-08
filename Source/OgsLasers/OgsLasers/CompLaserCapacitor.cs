@@ -8,7 +8,7 @@ namespace OgsLasers;
 
 public class CompLaserCapacitor : ThingComp
 {
-	public LocalTargetInfo lastFiringLocation = LocalTargetInfo.op_Implicit((Thing)null);
+	public LocalTargetInfo lastFiringLocation = (Thing)null;
 
 	public int shotstack = 0;
 
@@ -56,8 +56,8 @@ public class CompLaserCapacitor : ThingComp
 			yield return (Gizmo)new Command_Toggle
 			{
 				icon = (Texture)(object)CommandTex,
-				defaultLabel = TaggedString.op_Implicit(Translator.Translate("VWEL_ToggleHotshotLabel")),
-				defaultDesc = TaggedString.op_Implicit(Translator.Translate("VWEL_ToggleHotshotDesc")),
+				defaultLabel = Translator.Translate("VWEL_ToggleHotshotLabel"),
+				defaultDesc = Translator.Translate("VWEL_ToggleHotshotDesc"),
 				isActive = () => hotshot,
 				toggleAction = delegate
 				{
@@ -121,6 +121,8 @@ public class CompLaserCapacitor : ThingComp
 		float postExplosionSpawnChance = ((Verb_LaunchProjectile)__instance).Projectile.projectile.postExplosionSpawnChance;
 		int postExplosionSpawnThingCount = ((Verb_LaunchProjectile)__instance).Projectile.projectile.postExplosionSpawnThingCount;
 		ThingDef preExplosionSpawnThingDef = ((Verb_LaunchProjectile)__instance).Projectile.projectile.preExplosionSpawnThingDef;
-		GenExplosion.DoExplosion(position, val2, overheatBlastRadius, named, equipmentSource, overheatBlastExtraDamage, armorPenetration, val3, (ThingDef)null, (ThingDef)null, (Thing)null, (ThingDef)null, 0f, 1, (GasType?)null, false, (ThingDef)null, 0f, 1, 0f, false, (float?)null, (List<Thing>)null, (FloatRange?)null, true, 1f, 0f, true, (ThingDef)null, 1f, (SimpleCurve)null, (List<IntVec3>)null);
+		float preExplosionSpawnChance = ((Verb_LaunchProjectile)__instance).Projectile.projectile.preExplosionSpawnChance;
+		int preExplosionSpawnThingCount = ((Verb_LaunchProjectile)__instance).Projectile.projectile.preExplosionSpawnThingCount;
+		GenExplosion.DoExplosion(position, val2, overheatBlastRadius, named, equipmentSource, overheatBlastExtraDamage, armorPenetration, val3, null, null, null, postExplosionSpawnThingDef, postExplosionSpawnChance, postExplosionSpawnThingCount, null, null, 255, false, preExplosionSpawnThingDef, preExplosionSpawnChance, preExplosionSpawnThingCount, 0f, false, null, null, null, true, 1f, 0f, true, null, 1f, null, null, null, null);
 	}
 }

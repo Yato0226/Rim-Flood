@@ -15,7 +15,7 @@ public class LaserGun : ThingWithComps, IBeamColorThing, IDrawnWeaponWithRotatio
 
 	private float rotationOffset = 0f;
 
-	public LaserGunDef def => (((Thing)this).def as LaserGunDef) ?? LaserGunDef.defaultObj;
+	public new LaserGunDef def => (((Thing)this).def as LaserGunDef) ?? LaserGunDef.defaultObj;
 
 	public int BeamColor
 	{

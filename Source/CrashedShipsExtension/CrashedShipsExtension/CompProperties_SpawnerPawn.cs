@@ -39,7 +39,7 @@ public class CompProperties_SpawnerPawn : CompProperties
 
 	public int pawnSpawnRadius = 2;
 
-	public IntRange maxPawnsToSpawn = IntRange.zero;
+	public IntRange maxPawnsToSpawn = IntRange.Zero;
 
 	public bool chooseSingleTypeToSpawn;
 

@@ -17,8 +17,7 @@ public static class ThingExtensions
 		{
 			return false;
 		}
-		DamageInfo val = default(DamageInfo);
-		((DamageInfo)(ref val))._002Ector(DamageDefOf.Bomb, 0f, 0f, -1f, (Thing)null, (BodyPartRecord)null, (ThingDef)null, (SourceCategory)0, (Thing)null, true, true, (QualityCategory)2, true);
+		DamageInfo val = new DamageInfo(DamageDefOf.Bomb, 0f, 0f, -1f, (Thing)null, (BodyPartRecord)null, (ThingDef)null, DamageInfo.SourceCategory.ThingOrUnknown, (Thing)null, true, true, (QualityCategory)2, true);
 		foreach (Apparel item in pawn.apparel.WornApparel)
 		{
 			if (item.CheckPreAbsorbDamage(val))

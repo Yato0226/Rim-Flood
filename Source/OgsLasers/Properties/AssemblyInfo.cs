@@ -17,4 +17,4 @@ using System.Security.Permissions;
 [assembly: Guid("e5e3328f-5e90-4a6e-adbc-311f5e8a3c74")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 [assembly: AssemblyVersion("1.0.0.0")]
-[module: RefSafetyRules(11)]
+

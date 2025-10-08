@@ -107,7 +107,7 @@ public class CompSpawnerPawn : ThingComp
 		{
 			if (lord == null)
 			{
-				lord = FindLordToJoin((Thing)(object)base.parent, Props.lordJob, Props.shouldJoinParentLord);
+				lord = FindLordToJoin(parent, Props.lordJob, Props.shouldJoinParentLord);
 			}
 			return lord;
 		}
@@ -146,7 +146,7 @@ public class CompSpawnerPawn : ThingComp
 			CompCanBeDormant result;
 			if ((result = dormancyCompCached) == null)
 			{
-				result = (dormancyCompCached = ThingCompUtility.TryGetComp<CompCanBeDormant>((Thing)(object)base.parent));
+				result = (dormancyCompCached = parent.GetComp<CompCanBeDormant>());
 			}
 			return result;
 		}
@@ -168,14 +168,14 @@ public class CompSpawnerPawn : ThingComp
 	{
 		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0026: Unknown result type (might be due to invalid IL or missing references)
-		((ThingComp)this).Initialize(props);
+		base.Initialize(props);
 		if (chosenKind == null)
 		{
 			chosenKind = RandomPawnKindDef();
 		}
-		if (Props.maxPawnsToSpawn != IntRange.zero)
+		if (Props.maxPawnsToSpawn != IntRange.Zero)
 		{
-			pawnsLeftToSpawn = ((IntRange)(ref Props.maxPawnsToSpawn)).RandomInRange;
+			pawnsLeftToSpawn = Props.maxPawnsToSpawn.RandomInRange;
 		}
 	}
 
@@ -212,7 +212,7 @@ public class CompSpawnerPawn : ThingComp
 			};
 			Pawn foundPawn = null;
 			CellRect val3 = GenAdj.OccupiedRect(spawner);
-			Region region = GridsUtility.GetRegion(GenCollection.RandomElement<IntVec3>(((CellRect)(ref val3)).AdjacentCells), spawner.Map, (RegionType)14);
+			Region region = GridsUtility.GetRegion(val3.AdjacentCells.RandomElement(), spawner.Map, (RegionType)14);
 			object obj2 = _003C_003Ec._003C_003E9__13_2;
 			if (obj2 == null)
 			{
@@ -262,7 +262,7 @@ public class CompSpawnerPawn : ThingComp
 		//IL_005b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
 		IntVec3 invalid = default(IntVec3);
-		if (!CellFinder.TryFindRandomCellNear(byThing.Position, byThing.Map, 5, (Predicate<IntVec3>)((IntVec3 c) => GenGrid.Standable(c, byThing.Map) && byThing.Map.reachability.CanReach(c, LocalTargetInfo.op_Implicit(byThing), (PathEndMode)2, TraverseParms.For((TraverseMode)1, (Danger)3, false, false, false))), ref invalid, -1))
+		if (!CellFinder.TryFindRandomCellNear(byThing.Position, byThing.Map, 5, (Predicate<IntVec3>)((IntVec3 c) => GenGrid.Standable(c, byThing.Map) && byThing.Map.reachability.CanReach(c, new LocalTargetInfo(byThing), PathEndMode.OnCell, TraverseParms.For(TraverseMode.PassDoors, Danger.Deadly, false, false, false))), out invalid, -1))
 		{
 			Log.Error("Found no place for pawns to defend " + (object)byThing);
 			invalid = IntVec3.Invalid;
@@ -321,7 +321,7 @@ public class CompSpawnerPawn : ThingComp
 
 	private void CalculateNextPawnSpawnTick()
 	{
-		CalculateNextPawnSpawnTick(((FloatRange)(ref Props.pawnSpawnIntervalDays)).RandomInRange * 60000f);
+		CalculateNextPawnSpawnTick(Props.pawnSpawnIntervalDays.RandomInRange * 60000f);
 	}
 
 	public void CalculateNextPawnSpawnTick(float delayTicks)
@@ -334,7 +334,7 @@ public class CompSpawnerPawn : ThingComp
 	{
 		for (int num = spawnedPawns.Count - 1; num >= 0; num--)
 		{
-			if (!((Thing)spawnedPawns[num]).Spawned)
+			if (!spawnedPawns[num].Spawned)
 			{
 				spawnedPawns.RemoveAt(num);
 			}
@@ -349,17 +349,17 @@ public class CompSpawnerPawn : ThingComp
 	private PawnKindDef RandomPawnKindDef()
 	{
 		float curPoints = SpawnedPawnsPoints;
-		if (GenList.NullOrEmpty<PawnGenOption>((IList<PawnGenOption>)spawnablePawnKinds))
+		if (spawnablePawnKinds.NullOrEmpty())
 		{
-			if (!GenList.NullOrEmpty<PawnGenOption>((IList<PawnGenOption>)Props.spawnablePawnKinds))
+			if (!Props.spawnablePawnKinds.NullOrEmpty())
 			{
 				spawnablePawnKinds = Props.spawnablePawnKinds;
 			}
-			else if (((Thing)base.parent).Faction != null)
+			else if (parent.Faction != null)
 			{
-				if (GenList.NullOrEmpty<PawnGroupMaker>((IList<PawnGroupMaker>)((Thing)base.parent).Faction.def.pawnGroupMakers))
+				if (parent.Faction.def.pawnGroupMakers.NullOrEmpty())
 				{
-					List<PawnKindDef> list = DefDatabase<PawnKindDef>.AllDefsListForReading.Where((PawnKindDef x) => x.isFighter && x.defaultFactionType != null && x.defaultFactionType == ((Thing)base.parent).Faction.def).ToList();
+					List<PawnKindDef> list = DefDatabase<PawnKindDef>.AllDefsListForReading.Where((PawnKindDef x) => x.isFighter && x.defaultFactionDef != null && x.defaultFactionDef == parent.Faction.def).ToList();
 					for (int num = 0; num < list.Count(); num++)
 					{
 						spawnablePawnKinds.Add(new PawnGenOption(list[num], Inverse(list[num].combatPower)));
@@ -367,11 +367,11 @@ public class CompSpawnerPawn : ThingComp
 				}
 				else
 				{
-					List<PawnGenOption> list2 = new List<PawnGenOption>();
-					list2 = ((!GenCollection.Any<PawnGroupMaker>(((Thing)base.parent).Faction.def.pawnGroupMakers, (Predicate<PawnGroupMaker>)((PawnGroupMaker x) => x.kindDef == Props.factionGroupKindDef))) ? GenCollection.RandomElementByWeight<PawnGroupMaker>(((Thing)base.parent).Faction.def.pawnGroupMakers.Where((PawnGroupMaker x) => x.kindDef == PawnGroupKindDefOf.Combat || x.kindDef == PawnGroupKindDefOf.Settlement), (Func<PawnGroupMaker, float>)((PawnGroupMaker x) => x.commonality)).options : GenCollection.RandomElementByWeight<PawnGroupMaker>(((Thing)base.parent).Faction.def.pawnGroupMakers.Where((PawnGroupMaker x) => x.kindDef == Props.factionGroupKindDef), (Func<PawnGroupMaker, float>)((PawnGroupMaker x) => x.commonality)).options);
+					List<RimWorld.PawnGenOption> list2 = new List<RimWorld.PawnGenOption>();
+					list2 = ((!parent.Faction.def.pawnGroupMakers.Any((PawnGroupMaker x) => x.kindDef == Props.factionGroupKindDef))) ? GenCollection.RandomElementByWeight<PawnGroupMaker>(parent.Faction.def.pawnGroupMakers.Where((PawnGroupMaker x) => x.kindDef == PawnGroupKindDefOf.Combat || x.kindDef == PawnGroupKindDefOf.Settlement), (PawnGroupMaker x) => x.commonality).options : GenCollection.RandomElementByWeight<PawnGroupMaker>(parent.Faction.def.pawnGroupMakers.Where((PawnGroupMaker x) => x.kindDef == Props.factionGroupKindDef), (PawnGroupMaker x) => x.commonality).options;
 					for (int num2 = 0; num2 < list2.Count(); num2++)
 					{
-						spawnablePawnKinds.Add(new PawnGenOption(list2[num2]));
+						spawnablePawnKinds.Add(new PawnGenOption(list2[num2].kind, list2[num2].selectionWeight));
 					}
 				}
 			}
@@ -382,7 +382,7 @@ public class CompSpawnerPawn : ThingComp
 			enumerable = enumerable.Where((PawnGenOption x) => curPoints + x.kind.combatPower <= Props.maxSpawnedPawnsPoints);
 		}
 		PawnGenOption pawnGenOption = default(PawnGenOption);
-		if (GenCollection.TryRandomElementByWeight<PawnGenOption>(enumerable, (Func<PawnGenOption, float>)((PawnGenOption x) => x.selectionWeight), ref pawnGenOption))
+		if (enumerable.TryRandomElementByWeight((PawnGenOption x) => x.selectionWeight, out pawnGenOption))
 		{
 			return pawnGenOption.kind;
 		}
@@ -391,11 +391,6 @@ public class CompSpawnerPawn : ThingComp
 
 	private bool TrySpawnPawn(out Pawn pawn)
 	{
-		//IL_00bd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ea: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0159: Unknown result type (might be due to invalid IL or missing references)
 		if (!canSpawnPawns)
 		{
 			pawn = null;
@@ -410,20 +405,19 @@ public class CompSpawnerPawn : ThingComp
 			pawn = null;
 			return false;
 		}
-		pawn = PawnGenerator.GeneratePawn(new PawnGenerationRequest(chosenKind, ((Thing)base.parent).Faction, (PawnGenerationContext)2, -1, false, false, false, false, true, false, 1f, false, true, true, true, false, false, false, false, 0f, 0f, (Pawn)null, 1f, (Predicate<Pawn>)null, (Predicate<Pawn>)null, (IEnumerable<TraitDef>)null, (IEnumerable<TraitDef>)null, (float?)null, (float?)chosenKind.race.race.lifeStageAges.Last().minAge, (float?)null, (Gender?)null, (float?)null, (string)null, (string)null, (RoyalTitleDef)null, (Ideo)null, false, false, false));
+		PawnGenerationRequest request = new PawnGenerationRequest(chosenKind, parent.Faction, PawnGenerationContext.NonPlayer, -1, false, false, false, false, true, 1f, false, true, true, true, true, fixedBiologicalAge: chosenKind.race.race.lifeStageAges.Last().minAge);
+		pawn = PawnGenerator.GeneratePawn(request);
 		spawnedPawns.Add(pawn);
-		Pawn obj = pawn;
-		CellRect val = GenAdj.OccupiedRect((Thing)(object)base.parent);
-		GenSpawn.Spawn((Thing)(object)obj, GenCollection.RandomElement<IntVec3>(((CellRect)(ref val)).AdjacentCells), ((Thing)base.parent).Map, (WipeMode)0);
-		Lord val2 = Lord;
-		if (val2 == null)
+		GenSpawn.Spawn(pawn, parent.OccupiedRect().AdjacentCells.RandomElement(), parent.Map, WipeMode.Vanish);
+		Lord lord = Lord;
+		if (lord == null)
 		{
-			val2 = CreateNewLord((Thing)(object)base.parent, aggressive, Props.defendRadius, Props.lordJob);
+			lord = CreateNewLord(parent, aggressive, Props.defendRadius, Props.lordJob);
 		}
-		val2.AddPawn(pawn);
+		lord.AddPawn(pawn);
 		if (Props.spawnSound != null)
 		{
-			SoundStarter.PlayOneShot(Props.spawnSound, SoundInfo.op_Implicit((Thing)(object)base.parent));
+			SoundStarter.PlayOneShot(Props.spawnSound, SoundInfo.InMap(parent));
 		}
 		if (pawnsLeftToSpawn > 0)
 		{
@@ -455,7 +449,7 @@ public class CompSpawnerPawn : ThingComp
 		for (int i = 0; i < spawnedPawns.Count; i++)
 		{
 			Pawn val = spawnedPawns[i];
-			if (((Thing)val).def.race.EatsFood && val.RaceProps.Humanlike && val.needs.food.Starving)
+			if (val.def.race.EatsFood && val.RaceProps.Humanlike && val.needs.food.Starving)
 			{
 				Thing val2 = ThingMaker.MakeThing(ThingDefOf.MealNutrientPaste, (ThingDef)null);
 				val2.stackCount = 3;
@@ -466,7 +460,7 @@ public class CompSpawnerPawn : ThingComp
 
 	public override void CompTick()
 	{
-		if (((Thing)base.parent).Map == null)
+		if (parent.Map == null)
 		{
 			return;
 		}
@@ -474,11 +468,11 @@ public class CompSpawnerPawn : ThingComp
 		{
 			initialSpawnDelay--;
 		}
-		if (Active && ((Thing)base.parent).Spawned && initialSpawnDelay == 0)
+		if (Active && parent.Spawned && initialSpawnDelay == 0)
 		{
 			SpawnInitialPawns();
 		}
-		if (!((Thing)base.parent).Spawned || initialSpawnDelay != -1)
+		if (!parent.Spawned || initialSpawnDelay != -1)
 		{
 			return;
 		}
@@ -502,7 +496,7 @@ public class CompSpawnerPawn : ThingComp
 		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
 		if (!GenText.NullOrEmpty(Props.spawnMessageKey) && MessagesRepeatAvoider.MessageShowAllowed(Props.spawnMessageKey, 0.1f))
 		{
-			Messages.Message(TaggedString.op_Implicit(Translator.Translate(Props.spawnMessageKey)), LookTargets.op_Implicit((Thing)(object)base.parent), MessageTypeDefOf.NegativeEvent, true);
+			Messages.Message(Translator.Translate(Props.spawnMessageKey), parent, MessageTypeDefOf.NegativeEvent, true);
 		}
 	}
 
@@ -521,7 +515,7 @@ public class CompSpawnerPawn : ThingComp
 				TrySpawnPawn(out var _);
 			}
 		};
-		if (GenCollection.Any<Pawn>(spawnedPawns, (Predicate<Pawn>)((Pawn x) => ((Thing)x).def.race.Humanlike)))
+		if (GenCollection.Any<Pawn>(spawnedPawns, (Predicate<Pawn>)((Pawn x) => x.def.race.Humanlike)))
 		{
 			yield return (Gizmo)new Command_Action
 			{
@@ -535,56 +529,42 @@ public class CompSpawnerPawn : ThingComp
 		}
 	}
 
-	public override string CompInspectStringExtra()
-	{
-		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00cd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00d8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0077: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
-		//IL_009c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0114: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0119: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0123: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0128: Unknown result type (might be due to invalid IL or missing references)
-		if (!Props.showNextSpawnInInspect || nextPawnSpawnTick <= 0 || chosenKind == null)
-		{
-			return null;
-		}
-		if (pawnsLeftToSpawn == 0 && !GenText.NullOrEmpty(Props.noPawnsLeftToSpawnKey))
-		{
-			return TaggedString.op_Implicit(Translator.Translate(Props.noPawnsLeftToSpawnKey));
-		}
-		string text;
-		if (!Dormant)
-		{
-			text = TaggedString.op_Implicit(TranslatorFormattedStringExtensions.Translate(Props.nextSpawnInspectStringKey ?? "SpawningNextPawnIn", NamedArgument.op_Implicit(((Def)chosenKind).LabelCap), NamedArgument.op_Implicit(GenDate.ToStringTicksToDays(nextPawnSpawnTick - Find.TickManager.TicksGame, "F1"))));
-		}
-		else
-		{
-			if (Props.nextSpawnInspectStringKeyDormant == null)
-			{
-				return null;
-			}
-			text = TaggedString.op_Implicit(Translator.Translate(Props.nextSpawnInspectStringKeyDormant) + ": " + ((Def)chosenKind).LabelCap);
-		}
-		if (pawnsLeftToSpawn > 0 && !GenText.NullOrEmpty(Props.pawnsLeftToSpawnKey))
-		{
-			text = TaggedString.op_Implicit(text + ("\n" + Translator.Translate(Props.pawnsLeftToSpawnKey) + ": ")) + pawnsLeftToSpawn;
-		}
-		return text;
-	}
-
+	    public override string CompInspectStringExtra()
+	    {
+	        if (!Props.showNextSpawnInInspect || nextPawnSpawnTick <= 0 || chosenKind == null)
+	        {
+	            return null;
+	        }
+	        if (pawnsLeftToSpawn == 0 && !Props.noPawnsLeftToSpawnKey.NullOrEmpty())
+	        {
+	            return Props.noPawnsLeftToSpawnKey.Translate();
+	        }
+	        string text;
+	        if (!Dormant)
+	        {
+	            text = (Props.nextSpawnInspectStringKey ?? "SpawningNextPawnIn").Translate(((Def)chosenKind).LabelCap, (nextPawnSpawnTick - Find.TickManager.TicksGame).ToStringTicksToDays("F1"));
+	        }
+	        else
+	        {
+	            if (Props.nextSpawnInspectStringKeyDormant == null)
+	            {
+	                return null;
+	            }
+	            text = Props.nextSpawnInspectStringKeyDormant.Translate() + ": " + ((Def)chosenKind).LabelCap;
+	        }
+	        if (pawnsLeftToSpawn > 0 && !Props.pawnsLeftToSpawnKey.NullOrEmpty())
+	        {
+	            text = text + "\n" + Props.pawnsLeftToSpawnKey.Translate() + ": " + pawnsLeftToSpawn;
+	        }
+	        return text;
+	    }
 	public override void PostExposeData()
 	{
 		//IL_0097: Unknown result type (might be due to invalid IL or missing references)
 		//IL_009d: Invalid comparison between Unknown and I4
 		//IL_00d9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00de: Unknown result type (might be due to invalid IL or missing references)
-		((ThingComp)this).PostExposeData();
+		base.PostExposeData();
 		Scribe_Values.Look<int>(ref nextPawnSpawnTick, "nextPawnSpawnTick", 0, false);
 		Scribe_Values.Look<int>(ref initialSpawnDelay, "initialSpawnDelay", 0, false);
 		Scribe_Values.Look<int>(ref pawnsLeftToSpawn, "pawnsLeftToSpawn", -1, false);
@@ -596,9 +576,9 @@ public class CompSpawnerPawn : ThingComp
 		if ((int)Scribe.mode == 4)
 		{
 			spawnedPawns.RemoveAll((Pawn x) => x == null);
-			if (pawnsLeftToSpawn == -1 && Props.maxPawnsToSpawn != IntRange.zero)
+			if (pawnsLeftToSpawn == -1 && Props.maxPawnsToSpawn != IntRange.Zero)
 			{
-				pawnsLeftToSpawn = ((IntRange)(ref Props.maxPawnsToSpawn)).RandomInRange;
+				pawnsLeftToSpawn = Props.maxPawnsToSpawn.RandomInRange;
 			}
 		}
 	}

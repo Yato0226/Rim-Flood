@@ -44,7 +44,7 @@ public static class CYA_PawnRenderUtility_Draw_EquipmentAiming_GunDrawing_Patch
 		{
 			Stance curStance = val.stances.curStance;
 			Stance_Busy val2 = (Stance_Busy)(object)((curStance is Stance_Busy) ? curStance : null);
-			if (val2 != null && !val2.neverAimWeapon && ((LocalTargetInfo)(ref val2.focusTarg)).IsValid)
+			if (val2 != null && !val2.neverAimWeapon && val2.focusTarg.IsValid)
 			{
 				drawLoc -= Vector3Utility.RotatedBy(new Vector3(0f, 0f, 0.4f), aimAngle);
 				aimAngle = (aimAngle + drawnWeaponWithRotation.RotationOffset) % 360f;

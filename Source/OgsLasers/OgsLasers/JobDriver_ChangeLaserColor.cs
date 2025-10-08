@@ -15,7 +15,7 @@ public class JobDriver_ChangeLaserColor : JobDriver
 			//IL_0007: Unknown result type (might be due to invalid IL or missing references)
 			//IL_000c: Unknown result type (might be due to invalid IL or missing references)
 			LocalTargetInfo target = base.job.GetTarget((TargetIndex)1);
-			return ((LocalTargetInfo)(ref target)).Thing;
+			return target.Thing;
 		}
 	}
 
@@ -26,7 +26,7 @@ public class JobDriver_ChangeLaserColor : JobDriver
 			//IL_0007: Unknown result type (might be due to invalid IL or missing references)
 			//IL_000c: Unknown result type (might be due to invalid IL or missing references)
 			LocalTargetInfo target = base.job.GetTarget((TargetIndex)1);
-			return ((LocalTargetInfo)(ref target)).Thing as IBeamColorThing;
+			return (IBeamColorThing)target.Thing;
 		}
 	}
 
@@ -37,7 +37,7 @@ public class JobDriver_ChangeLaserColor : JobDriver
 			//IL_0007: Unknown result type (might be due to invalid IL or missing references)
 			//IL_000c: Unknown result type (might be due to invalid IL or missing references)
 			LocalTargetInfo target = base.job.GetTarget((TargetIndex)2);
-			return ((LocalTargetInfo)(ref target)).Thing;
+			return target.Thing;
 		}
 	}
 
@@ -49,7 +49,7 @@ public class JobDriver_ChangeLaserColor : JobDriver
 		{
 			return false;
 		}
-		return ReservationUtility.Reserve(base.pawn, LocalTargetInfo.op_Implicit(Gun), base.job, 1, -1, (ReservationLayerDef)null, errorOnFailed, false) && ReservationUtility.Reserve(base.pawn, LocalTargetInfo.op_Implicit(Prism), base.job, 1, -1, (ReservationLayerDef)null, errorOnFailed, false);
+		return ReservationUtility.Reserve(base.pawn, Gun, base.job, 1, -1, (ReservationLayerDef)null, errorOnFailed, false) && ReservationUtility.Reserve(base.pawn, Prism, base.job, 1, -1, (ReservationLayerDef)null, errorOnFailed, false);
 	}
 
 	protected override IEnumerable<Toil> MakeNewToils()
@@ -72,8 +72,7 @@ public class JobDriver_ChangeLaserColor : JobDriver
 				//IL_0042: Unknown result type (might be due to invalid IL or missing references)
 				//IL_0043: Unknown result type (might be due to invalid IL or missing references)
 				BeamColorThing.BeamColor = base.pawn.CurJob.maxNumMeleeAttacks;
-				TargetInfo val = default(TargetInfo);
-				((TargetInfo)(ref val))._002Ector(Gun.Position, ((JobDriver)this).Map, false);
+				TargetInfo val = new TargetInfo(Gun.Position, base.Map, false);
 				Effecter val2 = EffecterDefOf.Deflect_Metal.Spawn();
 				val2.Trigger(val, val, -1);
 				val2.Cleanup();

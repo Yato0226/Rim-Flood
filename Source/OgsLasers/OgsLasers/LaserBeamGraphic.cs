@@ -22,7 +22,7 @@ internal class LaserBeamGraphic : Thing
 
 	private Mesh mesh;
 
-	public LaserBeamDef LaserBeamDef => ((Thing)(laserBeam?)).def as LaserBeamDef;
+	public LaserBeamDef LaserBeamDef => (laserBeam != null) ? ((Thing)laserBeam).def as LaserBeamDef : null;
 
 	public float Opacity => (float)Math.Sin(Math.Pow(1.0 - 1.0 * (double)ticks / (double)LaserBeamDef.lifetime, LaserBeamDef.impulse) * Math.PI);
 
@@ -40,7 +40,7 @@ internal class LaserBeamGraphic : Thing
 		Scribe_Values.Look<Vector3>(ref b, "b", default(Vector3), false);
 	}
 
-	public override void Tick()
+	protected override void Tick()
 	{
 		if (LaserBeamDef == null || ticks++ > LaserBeamDef.lifetime)
 		{
@@ -102,7 +102,7 @@ internal class LaserBeamGraphic : Thing
 		//IL_013b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_013d: Unknown result type (might be due to invalid IL or missing references)
 		//IL_013e: Unknown result type (might be due to invalid IL or missing references)
-		if (!((Object)(object)mesh != (Object)null))
+		if (!((UnityEngine.Object)(object)mesh != (UnityEngine.Object)null))
 		{
 			materialBeam = LaserBeamDef.GetBeamMaterial(colorIndex) ?? ((ThingDef)LaserBeamDef).graphicData.Graphic.MatSingle;
 			if (((ThingDef)LaserBeamDef).graphicData.graphicClass == typeof(Graphic_Random))
@@ -112,13 +112,12 @@ internal class LaserBeamGraphic : Thing
 			float beamWidth = LaserBeamDef.beamWidth;
 			Quaternion val = Quaternion.LookRotation(b - a);
 			Vector3 val2 = b - a;
-			Vector3 normalized = ((Vector3)(ref val2)).normalized;
+			Vector3 normalized = val2.normalized;
 			val2 = b - a;
-			float magnitude = ((Vector3)(ref val2)).magnitude;
-			Vector3 val3 = default(Vector3);
-			((Vector3)(ref val3))._002Ector(beamWidth, 1f, magnitude);
+			float magnitude = val2.magnitude;
+			Vector3 val3 = new Vector3(beamWidth, 1f, magnitude);
 			Vector3 val4 = (a + b) / 2f;
-			((Matrix4x4)(ref drawingMatrix)).SetTRS(val4, val, val3);
+			drawingMatrix.SetTRS(val4, val, val3);
 			float num = 1f * (float)materialBeam.mainTexture.width / (float)materialBeam.mainTexture.height;
 			float num2 = ((LaserBeamDef.seam < 0f) ? num : LaserBeamDef.seam);
 			float num3 = beamWidth / num / 2f * num2;
@@ -171,12 +170,12 @@ internal class LaserBeamGraphic : Thing
 			float num = decoration.spacing * LaserBeamDef.beamWidth;
 			float num2 = decoration.initialOffset * LaserBeamDef.beamWidth;
 			Vector3 val = b - a;
-			Vector3 normalized = ((Vector3)(ref val)).normalized;
+			Vector3 normalized = val.normalized;
 			float num3 = Vector3Utility.AngleFlat(b - a);
 			Vector3 val2 = normalized * num;
 			Vector3 val3 = a + val2 * 0.5f + normalized * num2;
 			val = b - a;
-			float num4 = ((Vector3)(ref val)).magnitude - num;
+			float num4 = val.magnitude - num;
 			int num5 = 0;
 			while (num4 > 0f && ThingMaker.MakeThing(decoration.mote, (ThingDef)null) is MoteLaserDectoration moteLaserDectoration)
 			{

@@ -64,7 +64,7 @@ public class LaserColor
 			return index;
 		}
 		QualityCategory val = default(QualityCategory);
-		if (QualityUtility.TryGetQuality(gun, ref val))
+		if (QualityUtility.TryGetQuality(gun, out val))
 		{
 			QualityCategory val2 = val;
 			QualityCategory val3 = val2;

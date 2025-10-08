@@ -32,7 +32,7 @@ public class PawnGenOption
 
 	public void LoadDataFromXmlCustom(XmlNode xmlRoot)
 	{
-		DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef((object)this, "kind", xmlRoot.Name, (string)null, (Type)null);
+		DirectXmlCrossRefLoader.RegisterObjectWantsCrossRef(this, typeof(PawnGenOption).GetField("kind"), xmlRoot.Name, null, null, null);
 		selectionWeight = ParseHelper.FromString<float>(xmlRoot.FirstChild.Value);
 	}
 }

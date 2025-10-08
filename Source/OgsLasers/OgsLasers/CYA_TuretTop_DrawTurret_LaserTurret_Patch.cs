@@ -44,10 +44,10 @@ internal class CYA_TuretTop_DrawTurret_LaserTurret_Patch
 		}
 		float num = (float)curRotationIntField.GetValue(__instance);
 		LocalTargetInfo targetCurrentlyAimingAt = ((Building_Turret)building_LaserGun).TargetCurrentlyAimingAt;
-		if (((LocalTargetInfo)(ref targetCurrentlyAimingAt)).HasThing)
+		if (targetCurrentlyAimingAt.HasThing)
 		{
 			targetCurrentlyAimingAt = ((Building_Turret)building_LaserGun).TargetCurrentlyAimingAt;
-			num = Vector3Utility.AngleFlat(((LocalTargetInfo)(ref targetCurrentlyAimingAt)).CenterVector3 - GenThing.TrueCenter((Thing)(object)building_LaserGun));
+			num = Vector3Utility.AngleFlat(targetCurrentlyAimingAt.CenterVector3 - GenThing.TrueCenter((Thing)(object)building_LaserGun));
 		}
 		if (((Building_TurretGun)building_LaserGun).gun is IDrawnWeaponWithRotation drawnWeaponWithRotation)
 		{
@@ -60,10 +60,10 @@ internal class CYA_TuretTop_DrawTurret_LaserTurret_Patch
 			val = ((Thing)spinningLaserGunTurret).Graphic.MatSingle;
 		}
 		Vector3 val2 = default(Vector3);
-		((Vector3)(ref val2))._002Ector(((ThingDef)building_LaserGun.def).building.turretTopOffset.x, 0f, ((ThingDef)building_LaserGun.def).building.turretTopOffset.y);
+		val2 = new Vector3(((ThingDef)building_LaserGun.def).building.turretTopOffset.x, 0f, ((ThingDef)building_LaserGun.def).building.turretTopOffset.y);
 		float turretTopDrawSize = ((ThingDef)building_LaserGun.def).building.turretTopDrawSize;
 		Matrix4x4 val3 = default(Matrix4x4);
-		((Matrix4x4)(ref val3)).SetTRS(((Thing)building_LaserGun).DrawPos + Altitudes.AltIncVect + val2, GenMath.ToQuat(num), new Vector3(turretTopDrawSize, 1f, turretTopDrawSize));
+		val3.SetTRS(((Thing)building_LaserGun).DrawPos + Altitudes.AltIncVect + val2, GenMath.ToQuat(num), new Vector3(turretTopDrawSize, 1f, turretTopDrawSize));
 		Graphics.DrawMesh(MeshPool.plane10, val3, val, 0);
 		return false;
 	}

@@ -46,8 +46,7 @@
               "RelativeToolTip": "ExtraHives\\IncidentWorker_Infestation.cs",
               "ViewState": "AgIAADMAAAAAAAAAAAAswD8AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-05T07:55:53.353Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-05T07:55:53.353Z"
             },
             {
               "$type": "Document",
@@ -55,8 +54,8 @@
               "Title": "CompSpawnerPawn.cs",
               "DocumentMoniker": "D:\\Quick Access\\Games\\RimWorld\\Mods\\Rim Flood\\Source\\ExtraHives\\ExtraHives\\CompSpawnerPawn.cs",
               "RelativeDocumentMoniker": "ExtraHives\\CompSpawnerPawn.cs",
-              "ToolTip": "D:\\Quick Access\\Games\\RimWorld\\Mods\\Rim Flood\\Source\\ExtraHives\\ExtraHives\\CompSpawnerPawn.cs*",
-              "RelativeToolTip": "ExtraHives\\CompSpawnerPawn.cs*",
+              "ToolTip": "D:\\Quick Access\\Games\\RimWorld\\Mods\\Rim Flood\\Source\\ExtraHives\\ExtraHives\\CompSpawnerPawn.cs",
+              "RelativeToolTip": "ExtraHives\\CompSpawnerPawn.cs",
               "ViewState": "AgIAABwCAAAAAAAAAAAowDACAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-05T07:55:53.168Z",
@@ -72,8 +71,7 @@
               "RelativeToolTip": "ExtraHives\\LordJob_DefendHiveBase.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-05T07:54:11.449Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-05T07:54:11.449Z"
             },
             {
               "$type": "Document",
@@ -85,8 +83,7 @@
               "RelativeToolTip": "ExtraHives\\HarmonyInstance\\PawnGroupMakerUtility_TryGetRandomPawnGroupMaker_Patch.cs",
               "ViewState": "AgIAABQAAAAAAAAAAAAswCAAAAA3AQAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-05T07:33:36.502Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-05T07:33:36.502Z"
             }
           ]
         }

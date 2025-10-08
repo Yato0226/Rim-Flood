@@ -81,9 +81,9 @@ public class LordJob_PawnsDefendShip : LordJob
 		//IL_0172: Expected O, but got Unknown
 		//IL_002c: Unknown result type (might be due to invalid IL or missing references)
 		StateGraph val = new StateGraph();
-		if (!((IntVec3)(ref defSpot)).IsValid)
+		if (!defSpot.IsValid)
 		{
-			Log.Warning("LordJob_PawnsDefendShip defSpot is invalid. Returning graph for LordJob_AssaultColony.", false);
+			Log.Warning("LordJob_PawnsDefendShip defSpot is invalid. Returning graph for LordJob_AssaultColony.");
 			val.AttachSubgraph(((LordJob)new LordJob_AssaultColony(faction, true, true, false, false, true, false, false)).CreateGraph());
 			return val;
 		}

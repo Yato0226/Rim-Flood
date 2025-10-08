@@ -17,7 +17,7 @@ public class Building_LaserGun : Building_TurretGun, IBeamColorThing
 
 	private int beamColorIndex = -1;
 
-	public Building_LaserGunDef def => ((Thing)this).def as Building_LaserGunDef;
+	public new Building_LaserGunDef def => ((Thing)this).def as Building_LaserGunDef;
 
 	public int BurstCooldownTicksLeft => base.burstCooldownTicksLeft;
 
@@ -63,7 +63,7 @@ public class Building_LaserGun : Building_TurretGun, IBeamColorThing
 		power = ((ThingWithComps)this).GetComp<CompPowerTrader>();
 	}
 
-	public override void Tick()
+	protected override void Tick()
 	{
 		//IL_00d9: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00e5: Unknown result type (might be due to invalid IL or missing references)
@@ -80,10 +80,10 @@ public class Building_LaserGun : Building_TurretGun, IBeamColorThing
 		if (isCharged || base.burstCooldownTicksLeft > 1)
 		{
 			int burstWarmupTicksLeft = base.burstWarmupTicksLeft;
-			((Building_TurretGun)this).Tick();
+			base.Tick();
 			if (base.burstWarmupTicksLeft == GenTicks.SecondsToTicks(((ThingDef)def).building.turretBurstWarmupTime.max) - 1 && burstWarmupTicksLeft == base.burstWarmupTicksLeft + 1 && ((Building_Turret)this).AttackVerb.verbProps.soundAiming != null)
 			{
-				SoundStarter.PlayOneShot(((Building_Turret)this).AttackVerb.verbProps.soundAiming, SoundInfo.op_Implicit(new TargetInfo(((Thing)this).Position, ((Thing)this).Map, false)));
+				SoundStarter.PlayOneShot(((Building_Turret)this).AttackVerb.verbProps.soundAiming, new TargetInfo(((Thing)this).Position, ((Thing)this).Map, false));
 			}
 		}
 	}
@@ -133,7 +133,7 @@ public class Building_LaserGun : Building_TurretGun, IBeamColorThing
 		if (!isCharged)
 		{
 			text += "\n";
-			text = TaggedString.op_Implicit(text + Translator.Translate("LaserTurretNotCharged"));
+			text = text + Translator.Translate("LaserTurretNotCharged");
 		}
 		return text;
 	}

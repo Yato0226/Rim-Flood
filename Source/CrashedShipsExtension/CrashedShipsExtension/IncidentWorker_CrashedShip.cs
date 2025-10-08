@@ -17,13 +17,13 @@ public class IncidentWorker_CrashedShip : IncidentWorker
 		return 1;
 	}
 
-	public override bool CanFireNowSub(IncidentParms parms)
+	protected override bool CanFireNowSub(IncidentParms parms)
 	{
 		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 		return ((Map)parms.target).listerThings.ThingsOfDef(base.def.mechClusterBuilding).Count <= 0;
 	}
 
-	public override bool TryExecuteWorker(IncidentParms parms)
+	protected override bool TryExecuteWorker(IncidentParms parms)
 	{
 		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
 		//IL_000c: Expected O, but got Unknown
@@ -51,7 +51,7 @@ public class IncidentWorker_CrashedShip : IncidentWorker
 			Building val2 = (Building)ThingMaker.MakeThing(base.def.mechClusterBuilding, (ThingDef)null);
 			CompSpawnerOnDamaged compSpawnerOnDamaged = ThingCompUtility.TryGetComp<CompSpawnerOnDamaged>((Thing)(object)val2);
 			ThingDef val3 = compSpawnerOnDamaged?.Props.skyFaller ?? ThingDefOf.CrashedShipPartIncoming;
-			if (!CellFinderLoose.TryFindSkyfallerCell(val3, val, ref val4, 14, default(IntVec3), -1, false, true, true, true, true, false, (Predicate<IntVec3>)null))
+			if (!CellFinderLoose.TryFindSkyfallerCell(val3, val, val3.terrainAffordanceNeeded, out val4, 14, default(IntVec3), -1, false, true, true, true, true, false, null))
 			{
 				break;
 			}
@@ -63,11 +63,11 @@ public class IncidentWorker_CrashedShip : IncidentWorker
 			obj.shrapnelDirection = shrapnelDirection;
 			GenSpawn.Spawn((Thing)(object)obj, val4, val, (WipeMode)0);
 			num++;
-			list.Add(TargetInfo.op_Implicit((Thing)(object)val2));
+			list.Add(new TargetInfo(val2));
 		}
 		if (num > 0)
 		{
-			((IncidentWorker)this).SendStandardLetter(parms, LookTargets.op_Implicit(list), Array.Empty<NamedArgument>());
+			SendStandardLetter(parms, new LookTargets(list), Array.Empty<NamedArgument>());
 		}
 		return num > 0;
 	}
