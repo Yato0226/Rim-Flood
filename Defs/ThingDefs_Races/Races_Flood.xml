@@ -38,6 +38,7 @@
       <ComfyTemperatureMin>0</ComfyTemperatureMin>
       <MarketValue>100</MarketValue>
       <LeatherAmount>0</LeatherAmount>
+      <Wildness>0.95</Wildness>
     </statBases>
     <uiIconScale>2</uiIconScale>
     <tools>
@@ -59,7 +60,6 @@
       <baseBodySize>0.2</baseBodySize>
       <baseHealthScale>0.00001</baseHealthScale>
       <meatLabel>Rotted meat</meatLabel>
-      <wildness>0.95</wildness>
       <lifeExpectancy>0.001</lifeExpectancy>
 	  <deathAction Class="DeathActionProperties_Vanish">
         <workerClass>DeathActionWorker_Vanish</workerClass>
@@ -147,6 +147,7 @@
       <ComfyTemperatureMin>0</ComfyTemperatureMin>
       <MarketValue>100</MarketValue>
       <LeatherAmount>2</LeatherAmount>
+      <Wildness>0.95</Wildness>
     </statBases>
     <uiIconScale>2</uiIconScale>
     <tools>
@@ -178,7 +179,6 @@
       <baseBodySize>1.0</baseBodySize>
       <baseHealthScale>0.4</baseHealthScale>
       <meatLabel>Rotted meat</meatLabel>
-      <wildness>0.95</wildness>
       <lifeExpectancy>0.01</lifeExpectancy>
       <lifeStageAges>
         <li>
@@ -255,52 +255,7 @@
       <MarketValue>100</MarketValue>
       <LeatherAmount>4</LeatherAmount>
     </statBases>
-    <uiIconScale>2</uiIconScale>
-    <tools>
-      <li>
-        <label>mandibles</label>
-        <capacities>
-          <li>Bite</li>
-        </capacities>
-        <power>5</power>
-        <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>Mouth</linkedBodyPartsGroup>
-      </li>
-      <li>
-        <label>head</label>
-        <capacities>
-          <li>Blunt</li>
-        </capacities>
-        <power>4</power>
-        <cooldownTime>2</cooldownTime>
-        <linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
-        <ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
-        <chanceFactor>0.1</chanceFactor>
-      </li>
-    </tools>
-    <race>
-      <intelligence>ToolUser</intelligence>
-	  <thinkTreeMain>FloodCombat</thinkTreeMain>
-      <body>BeetleLike</body>
-      <baseBodySize>1.0</baseBodySize>
-      <baseHealthScale>0.4</baseHealthScale>
-      <meatLabel>Rotted meat</meatLabel>
-      <wildness>0.95</wildness>
-      <lifeExpectancy>0.01</lifeExpectancy>
-      <lifeStageAges>
-        <li>
-          <def>FloodForm</def>
-          <minAge>0.01</minAge>
-          <soundWounded>Pawn_Megascarab_Wounded</soundWounded>
-          <soundDeath>Pawn_Megascarab_Death</soundDeath>
-          <soundCall>Pawn_Megascarab_Call</soundCall>
-          <soundAngry>Pawn_Megascarab_Angry</soundAngry>
-        </li>
-      </lifeStageAges>
-      <soundMeleeHitPawn>Pawn_Melee_SmallScratch_HitPawn</soundMeleeHitPawn>
-      <soundMeleeHitBuilding>Pawn_Melee_SmallScratch_HitBuilding</soundMeleeHitBuilding>
-      <soundMeleeMiss>Pawn_Melee_SmallScratch_Miss</soundMeleeMiss>
-    </race>
+
     <tradeTags>
     </tradeTags>
   </ThingDef>
@@ -334,6 +289,7 @@
       <ComfyTemperatureMin>0</ComfyTemperatureMin>
       <MarketValue>100</MarketValue>
       <LeatherAmount>10</LeatherAmount>
+      <Wildness>0.95</Wildness>
     </statBases>
     <uiIconScale>2</uiIconScale>
     <tools>
@@ -363,9 +319,7 @@
 	  <thinkTreeMain>FloodCombat</thinkTreeMain>
       <body>BeetleLike</body>
       <baseBodySize>2.0</baseBodySize>
-      <baseHealthScale>3</baseHealthScale>
       <meatLabel>Rotted meat</meatLabel>
-      <wildness>0.95</wildness>
       <lifeExpectancy>0.01</lifeExpectancy>
       <lifeStageAges>
         <li>
@@ -414,6 +368,7 @@
       <ComfyTemperatureMin>0</ComfyTemperatureMin>
       <MarketValue>100</MarketValue>
       <LeatherAmount>5</LeatherAmount>
+      <Wildness>0.95</Wildness>
     </statBases>
     <uiIconScale>2</uiIconScale>
     <tools>
@@ -445,7 +400,6 @@
       <baseBodySize>2</baseBodySize>
       <baseHealthScale>0.000001</baseHealthScale>
       <meatLabel>Rotted meat</meatLabel>
-      <wildness>0.95</wildness>
       <lifeExpectancy>0.01</lifeExpectancy>
       <deathAction Class="DeathActionProperties_Divide">
         <divideBloodFilthCountRange>3~4</divideBloodFilthCountRange>
@@ -503,6 +457,7 @@
       <ComfyTemperatureMin>0</ComfyTemperatureMin>
       <MarketValue>100</MarketValue>
       <LeatherAmount>0</LeatherAmount>
+      <Wildness>0.95</Wildness>
     </statBases>
     <uiIconScale>2</uiIconScale>
     <tools>
@@ -522,9 +477,7 @@
 	  <thinkTreeMain>FloodCombat</thinkTreeMain>
       <body>Flood</body>
       <baseBodySize>1</baseBodySize>
-      <baseHealthScale>0.01</baseHealthScale>
       <meatLabel>Rotted meat</meatLabel>
-      <wildness>0.95</wildness>
       <lifeExpectancy>1</lifeExpectancy>
 	  <hediffGiverSets>
         <li>Pod_creation</li>
@@ -585,12 +538,9 @@
     <label>Stalker form</label>
     <description>Agile pure forms that can change into other types of flood</description>
     <statBases>
-      <MoveSpeed>8</MoveSpeed>
-      <ArmorRating_Blunt>0.0000001</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.0000001</ArmorRating_Sharp>
-      <ComfyTemperatureMin>0</ComfyTemperatureMin>
       <MarketValue>100</MarketValue>
       <LeatherAmount>0</LeatherAmount>
+      <Wildness>0.95</Wildness>
     </statBases>
     <uiIconScale>2</uiIconScale>
     <tools>
@@ -612,7 +562,6 @@
       <baseBodySize>2</baseBodySize>
       <baseHealthScale>0.001</baseHealthScale>
       <meatLabel>Rotted meat</meatLabel>
-      <wildness>0.95</wildness>
       <lifeExpectancy>1</lifeExpectancy>
 	  <hediffGiverSets>
         <li>Ranged_form</li>

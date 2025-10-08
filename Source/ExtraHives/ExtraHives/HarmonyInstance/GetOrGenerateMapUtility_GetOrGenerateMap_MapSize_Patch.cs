@@ -3,18 +3,21 @@ using HarmonyLib;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
+using System.Collections.Generic;
 
 namespace ExtraHives.HarmonyInstance;
 
 [HarmonyPatch(typeof(GetOrGenerateMapUtility), "GetOrGenerateMap", new Type[]
 {
-	typeof(int),
+	typeof(PlanetTile),
 	typeof(IntVec3),
-	typeof(WorldObjectDef)
+	typeof(WorldObjectDef),
+	typeof(IEnumerable<GenStepWithParams>),
+	typeof(bool)
 })]
 public static class GetOrGenerateMapUtility_GetOrGenerateMap_MapSize_Patch
 {
-	public static void Prefix(int tile, ref IntVec3 size, WorldObjectDef suggestedMapParentDef)
+	public static void Prefix(PlanetTile tile, IntVec3 size, WorldObjectDef suggestedMapParentDef, IEnumerable<GenStepWithParams> extraGenStepDefs, bool stepDebugger)
 	{
 		Map val = Current.Game.FindMap(tile);
 		Faction val2 = null;

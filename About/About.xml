@@ -8,6 +8,11 @@
    <modDependencies>
    
 	<li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2009463077</steamWorkshopUrl>
+	</li>
+	<li>
       <packageId>erdelf.HumanoidAlienRaces</packageId>
       <displayName>Humanoid Alien Races 2.0</displayName>
       <steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?iwd=839005762</steamWorkshopUrl>
@@ -19,6 +24,7 @@
 	</li>
 	</modDependencies>
 	<loadAfter>
+		<li>brrainz.harmony</li>
 		<li>erdelf.HumanoidAlienRaces</li>
 	</loadAfter>
    <packageId>Fenn.floodrace</packageId>

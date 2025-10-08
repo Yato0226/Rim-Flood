@@ -9,3 +9,4 @@ D:\Quick Access\Games\RimWorld\Mods\Rim Flood\Assemblies\Debug\net472\ExtraHives
 D:\Quick Access\Games\RimWorld\Mods\Rim Flood\Source\ExtraHives\obj\Debug\net472\ExtraHives.csproj.Up2Date
 D:\Quick Access\Games\RimWorld\Mods\Rim Flood\Source\ExtraHives\obj\Debug\net472\ExtraHives.dll
 D:\Quick Access\Games\RimWorld\Mods\Rim Flood\Source\ExtraHives\obj\Debug\net472\ExtraHives.pdb
+D:\Quick Access\Games\RimWorld\Mods\Rim Flood\Source\ExtraHives\obj\Debug\net472\ExtraHives.sourcelink.json

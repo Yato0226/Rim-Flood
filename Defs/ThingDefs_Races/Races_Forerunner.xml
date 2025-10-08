@@ -46,6 +46,7 @@
       <ComfyTemperatureMin>0</ComfyTemperatureMin>
       <MarketValue>100</MarketValue>
       <LeatherAmount>5</LeatherAmount>
+      <Wildness>0.95</Wildness>
     </statBases>
     <uiIconScale>2</uiIconScale>
 	 <tools>
@@ -74,7 +75,6 @@
       <body>Sentinel</body>
       <baseBodySize>0.2</baseBodySize>
       <baseHealthScale>0.01</baseHealthScale>
-      <wildness>0.95</wildness>
       <lifeExpectancy>0.01</lifeExpectancy>
       <lifeStageAges>
         <li>
@@ -130,6 +130,7 @@
       <ComfyTemperatureMin>0</ComfyTemperatureMin>
       <MarketValue>100</MarketValue>
       <LeatherAmount>5</LeatherAmount>
+      <Wildness>0.95</Wildness>
     </statBases>
     <uiIconScale>2</uiIconScale>
 	 <tools>
@@ -158,7 +159,6 @@
       <body>Sentinel</body>
       <baseBodySize>0.2</baseBodySize>
       <baseHealthScale>0.05</baseHealthScale>
-      <wildness>0.95</wildness>
       <lifeExpectancy>0.1</lifeExpectancy>
       <lifeStageAges>
         <li>
@@ -214,6 +214,7 @@
       <ComfyTemperatureMin>0</ComfyTemperatureMin>
       <MarketValue>100</MarketValue>
       <LeatherAmount>5</LeatherAmount>
+      <Wildness>0.95</Wildness>
     </statBases>
     <uiIconScale>2</uiIconScale>
 	 <tools>
@@ -239,7 +240,6 @@
       <body>Sentinel</body>
       <baseBodySize>0.2</baseBodySize>
       <baseHealthScale>0.00001</baseHealthScale>
-      <wildness>0.95</wildness>
       <lifeExpectancy>0.01</lifeExpectancy>
 	  <hediffGiverSets>
         <li>Forerunnerspawner</li>
@@ -308,13 +308,9 @@
     <description>A floating Constructor designed to build and repair.</description>
     <statBases>
       <MoveSpeed>4</MoveSpeed>
-	  <MinimumHandlingSkill>4</MinimumHandlingSkill>
-      <ArmorRating_Blunt>0.1</ArmorRating_Blunt>
-      <ArmorRating_Sharp>0.1</ArmorRating_Sharp>
-      <ComfyTemperatureMin>0</ComfyTemperatureMin>
-      <MarketValue>100</MarketValue>
-      <LeatherAmount>5</LeatherAmount>
-    </statBases>
+	        <MarketValue>100</MarketValue>
+	        <LeatherAmount>5</LeatherAmount>
+	        <Wildness>0</Wildness>    </statBases>
     <uiIconScale>2</uiIconScale>
 	 <tools>
       <li>
@@ -345,12 +341,10 @@
       <baseBodySize>1</baseBodySize>
 	  <baseHungerRate>0</baseHungerRate>
       <baseHealthScale>0.01</baseHealthScale>
-	  <trainability>Advanced</trainability>
-	  <manhunterOnTameFailChance>0</manhunterOnTameFailChance>
-	  <manhunterOnDamageChance>0</manhunterOnDamageChance>
-      <wildness>0</wildness>
-      <lifeExpectancy>12</lifeExpectancy>
-      <lifeStageAges>
+	        <trainability>Advanced</trainability>
+	        <manhunterOnTameFailChance>0</manhunterOnTameFailChance>
+	        <manhunterOnDamageChance>0</manhunterOnDamageChance>
+	        <lifeExpectancy>12</lifeExpectancy>      <lifeStageAges>
         <li>
           <def>FloodForm</def>
           <minAge>0.01</minAge>
