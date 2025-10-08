@@ -1,8 +1,10 @@
-This mod is updated to 1.6
+# This mod is updated to 1.6
 
 # Rim Flood
 
 A RimWorld mod by Fenndragon.
+
+Updated by me!
 
 ## Description
 Adds The Flood from Halo to possible raiding factions for RimWorld
@@ -35,6 +37,3 @@ This mod requires the following:
 
 ## Credits
 *   **Author:** Fenndragon
-
-## License
-[Consider adding a license here, e.g., MIT, Apache 2.0, etc.]
